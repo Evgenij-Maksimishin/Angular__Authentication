@@ -1,14 +1,28 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const userRegistation
-      return {}
+    const userRegistation = [
+      {
+        id: 1,
+        user: '',
+        email: '',
+        password: ''
+      },
+    ]
+
+    const userLogin = [
+      {
+        id: 1,
+        email: '',
+        password: ''
+      }
+    ]
+    return { userRegistation, userLogin }
   }
   constructor() { }
 }

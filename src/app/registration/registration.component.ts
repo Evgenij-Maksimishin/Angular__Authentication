@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, RouterOutletContract } from '@angular/router';
-import '../../assets/post.json'
+import { Router } from '@angular/router';
+import { userRegistration } from '../interfaces/userRegisrtration'
 
 @Component({
   selector: 'app-registration',
@@ -12,11 +12,12 @@ import '../../assets/post.json'
 export class RegistrationComponent implements OnInit {
 
   form!: FormGroup;
-  router!: Router;
+  userRegistration!: userRegistration;
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,8 +29,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit() {
-    /* console.log(this.form.getRawValue()); */
-    this.http.post('', this.form.getRawValue())
+    this.http.post<userRegistration>('api/userRegistation', this.form.getRawValue())
       .subscribe(() => this.router.navigate(['/login']))
   }
 
